@@ -1,17 +1,14 @@
 package variables;
 
 public class Main {
-//reusability
-	public static void main(String[] args) {
-		int sayi = 10;
-		String mesaj = "Öðrenci sayýsý : ";
-		
-		System.out.println("Öðrenci Sayýsý : " +sayi);
-		System.out.println(mesaj + sayi);
-		System.out.println(sayi);
-		System.out.println(sayi);
-		System.out.println(sayi);
 
+	public static void main(String[] args) {
+		
+		double sayi = 12.5;
+		sayi = -129;
+		
+		String þehir = "ANKARA";
+		char karakter = 'A';
 	}
 
 }
