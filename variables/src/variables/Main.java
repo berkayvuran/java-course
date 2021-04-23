@@ -9,6 +9,8 @@ public class Main {
 		
 		String þehir = "ANKARA";
 		char karakter = 'A';
+		
+		boolean dogruMu = false;
 	}
 
 }
