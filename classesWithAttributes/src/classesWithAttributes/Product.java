@@ -1,6 +1,24 @@
 package classesWithAttributes;
 
 public class Product {
+	
+	//constructor
+	
+	public Product (int _id, String _name, String _description, double _price, int _stockAmount, String _renk, String _kod) {
+		System.out.println("Yapýcý blok çalýþtý.");
+		this._id = _id;
+		this._name = _name;
+		this._description = _description;
+		this._price = _price;
+		this._stockAmount = _stockAmount;
+		this._renk = _renk;
+		this._kod = _kod;
+		
+	}
+	
+	public Product () {
+		
+	}
 
 	// attribute | field
 	int _id;
@@ -44,7 +62,7 @@ public class Product {
 		return _price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		_price = price;
 	}
 
