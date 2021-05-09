@@ -14,7 +14,9 @@ import kodlamaio.northwind.entities.concretes.Product;
 @RequestMapping("/api/products")
 public class ProductsController {
 	
+	
 	private ProductService productService;
+	
 	
 	@Autowired
 	public ProductsController(ProductService productService) {
@@ -22,9 +24,10 @@ public class ProductsController {
 		this.productService = productService;
 	}
 
-	@GetMapping("/getAll")
+
+
+	@GetMapping("/getall")
 	public List<Product> getAll(){
 		return this.productService.getAll();
 	}
-	
 }

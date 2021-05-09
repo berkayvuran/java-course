@@ -10,7 +10,7 @@ import kodlamaio.northwind.dataAccess.abstracts.ProductDao;
 import kodlamaio.northwind.entities.concretes.Product;
 
 @Service
-public class ProductManager implements ProductService {
+public class ProductManager implements ProductService{
 
 	private ProductDao productDao;
 	
@@ -19,7 +19,7 @@ public class ProductManager implements ProductService {
 		super();
 		this.productDao = productDao;
 	}
-	
+
 	@Override
 	public List<Product> getAll() {
 		
