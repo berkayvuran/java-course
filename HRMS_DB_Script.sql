@@ -1,63 +1,63 @@
 CREATE TABLE "public"."users"( 
-	"Id" int NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
-	"Email" varchar(50) NOT NULL,
-	"Password" varchar(25) NOT NULL);
+	"id" int NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+	"email" varchar(50) NOT NULL,
+	"password" varchar(25) NOT NULL);
 
 CREATE TABLE "public"."admins"( 
-	"Id" int NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
-	"Username" varchar(25),
-	"Password" varchar(25));
+	"id" int NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+	"username" varchar(25),
+	"password" varchar(25));
 
 CREATE TABLE "public"."candidates"( 
-	"UserId" int NOT NULL,
-	"FirstName" varchar(25) NOT NULL,
-	"LastName" varchar(25) NOT NULL,
-	"NationalityId" varchar(11) NOT NULL,
-	"BirthDate" date NOT NULL);
+	"user_id" int NOT NULL,
+	"first_name" varchar(25) NOT NULL,
+	"last_name" varchar(25) NOT NULL,
+	"nationality_id" varchar(11) NOT NULL,
+	"birth_date" date NOT NULL);
 
 CREATE TABLE "public"."companies"( 
-	"UserId" int NOT NULL,
-	"CompanyName" varchar(255) NOT NULL,
-	"WebAddress" varchar(50) NOT NULL,
-	"PhoneNumber" varchar(12) NOT NULL,
-	"IsActive" boolean NOT NULL);
+	"user_id" int NOT NULL,
+	"company_name" varchar(255) NOT NULL,
+	"web_address" varchar(50) NOT NULL,
+	"phone_number" varchar(12) NOT NULL,
+	"is_active" boolean NOT NULL);
 
 CREATE TABLE "public"."company_activation_codes"( 
-	"Id" int NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
-	"CompanyId" int NOT NULL,
-	"ActivationCode" varchar(38) NOT NULL,
-	"IsConfirmed" boolean NOT NULL,
-	"ConfirmationDate" date);
+	"id" int NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+	"company_id" int NOT NULL,
+	"activation_code" varchar(38) NOT NULL,
+	"is_confirmed" boolean NOT NULL,
+	"confirmation_date" date);
 
 CREATE TABLE "public"."company_activation_employees"( 
-	"Id" int NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
-	"CompanyId" int NOT NULL,
-	"ConfirmedEmployeeId" int,
-	"ConfirmationDate" date);
+	"id" int NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+	"company_id" int NOT NULL,
+	"confirmed_employee_id" int,
+	"confirmation_date" date);
 
 CREATE TABLE "public"."employees"( 
-	"UserId" int NOT NULL,
-	"FirstName" varchar(25) NOT NULL,
-	"LastName" varchar(25) NOT NULL);
+	"user_id" int NOT NULL,
+	"first_name" varchar(25) NOT NULL,
+	"last_name" varchar(25) NOT NULL);
 
 CREATE TABLE "public"."job_titles"( 
-	"Id" int NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
-	"Title" varchar(50) NOT NULL);
+	"id" int NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+	"job_title" varchar(50) NOT NULL);
 
 	
-ALTER TABLE "public"."admins" ADD CONSTRAINT "pk_Admin" PRIMARY KEY ("Id");
-ALTER TABLE "public"."candidates" ADD CONSTRAINT "pk_Candidate" PRIMARY KEY ("UserId");
-ALTER TABLE "public"."candidates" ADD CONSTRAINT "uc_NationalityId" UNIQUE ("NationalityId");
-ALTER TABLE "public"."companies" ADD CONSTRAINT "pk_Company" PRIMARY KEY ("UserId");
-ALTER TABLE "public"."company_activation_codes" ADD CONSTRAINT "pk_CompanyActivationCode" PRIMARY KEY ("Id");
-ALTER TABLE "public"."company_activation_employees" ADD CONSTRAINT "pk_CompanyActivationEmployee" PRIMARY KEY ("Id");
-ALTER TABLE "public"."employees" ADD CONSTRAINT "pk_Employee" PRIMARY KEY ("UserId");
-ALTER TABLE "public"."job_titles" ADD CONSTRAINT "pk_JobTitle" PRIMARY KEY ("Id");
-ALTER TABLE "public"."users" ADD CONSTRAINT "pk_User" PRIMARY KEY ("Id");
-ALTER TABLE "public"."job_titles" ADD CONSTRAINT "uc_JobTitle" UNIQUE ("Title");
-ALTER TABLE "public"."company_activation_codes" ADD CONSTRAINT "fk_CompanyActivationCode_Company" FOREIGN KEY ("CompanyId") REFERENCES "public"."companies" ( "UserId");
-ALTER TABLE "public"."company_activation_employees" ADD CONSTRAINT "fk_CompanyActivationEmployee_Company" FOREIGN KEY ("CompanyId") REFERENCES "public"."companies" ( "UserId");
-ALTER TABLE "public"."users" ADD CONSTRAINT "fk_User_Candidate" FOREIGN KEY ("Id") REFERENCES "public"."candidates" ( "UserId");
-ALTER TABLE "public"."users" ADD CONSTRAINT "fk_User_Company" FOREIGN KEY ("Id") REFERENCES "public"."companies" ( "UserId");
-ALTER TABLE "public"."users" ADD CONSTRAINT "fk_User_Employee" FOREIGN KEY ("Id") REFERENCES "public"."employees" ( "UserId");
-ALTER TABLE "public"."companies" ALTER COLUMN "IsActive" SET DEFAULT false;
+ALTER TABLE "public"."admins" ADD CONSTRAINT "pk_admin" PRIMARY KEY ("id");
+ALTER TABLE "public"."candidates" ADD CONSTRAINT "pk_candidate" PRIMARY KEY ("user_id");
+ALTER TABLE "public"."candidates" ADD CONSTRAINT "uc_nationality_id" UNIQUE ("nationality_id");
+ALTER TABLE "public"."companies" ADD CONSTRAINT "pk_Company" PRIMARY KEY ("user_id");
+ALTER TABLE "public"."company_activation_codes" ADD CONSTRAINT "pk_company_activation_code" PRIMARY KEY ("id");
+ALTER TABLE "public"."company_activation_employees" ADD CONSTRAINT "pk_company_activation_employee" PRIMARY KEY ("id");
+ALTER TABLE "public"."employees" ADD CONSTRAINT "pk_employee" PRIMARY KEY ("user_id");
+ALTER TABLE "public"."job_titles" ADD CONSTRAINT "pk_job_title" PRIMARY KEY ("id");
+ALTER TABLE "public"."users" ADD CONSTRAINT "pk_user" PRIMARY KEY ("id");
+ALTER TABLE "public"."job_titles" ADD CONSTRAINT "uc_job_title" UNIQUE ("job_title");
+ALTER TABLE "public"."company_activation_codes" ADD CONSTRAINT "fk_company_activation_code_company" FOREIGN KEY ("company_id") REFERENCES "public"."companies" ( "user_id");
+ALTER TABLE "public"."company_activation_employees" ADD CONSTRAINT "fk_company_activation_employee_company" FOREIGN KEY ("company_id") REFERENCES "public"."companies" ( "user_id");
+ALTER TABLE "public"."users" ADD CONSTRAINT "fk_user_candidate" FOREIGN KEY ("id") REFERENCES "public"."candidates" ( "user_id");
+ALTER TABLE "public"."users" ADD CONSTRAINT "fk_user_company" FOREIGN KEY ("id") REFERENCES "public"."companies" ( "user_id");
+ALTER TABLE "public"."users" ADD CONSTRAINT "fk_user_employee" FOREIGN KEY ("id") REFERENCES "public"."employees" ( "user_id");
+ALTER TABLE "public"."companies" ALTER COLUMN "is_active" SET DEFAULT false;

@@ -1,4 +1,4 @@
-package kodlamaio.hrms.entities.concretes;
+package kodlamaio.hrms_project.entities.concretes;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,7 +21,9 @@ public class Title {
 
 	@Column(name = "job_title")
 	private String titleName;
-
+	
+	public Title () {}
+	
 	public Title(int id, String titleName) {
 		super();
 		this.id = id;
