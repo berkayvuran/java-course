@@ -10,7 +10,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "JobTitles")
+@Table(name = "job_titles")
 
 public class Title {
 
