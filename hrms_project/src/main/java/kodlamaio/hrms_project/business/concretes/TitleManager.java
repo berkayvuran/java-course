@@ -28,14 +28,14 @@ public class TitleManager implements TitleService {
 	public DataResult<List<Title>> getAll() {
 
 		return new SuccessDataResult<List<Title>>
-		(this.titleDao.findAll(), "Data Listelendi");
+		(this.titleDao.findAll(), "Data listed.");
 				
 	}
 
 	@Override
 	public Result add(Title title) {
 		this.titleDao.save(title);
-		return new SuccessResult("Ünvan eklendi");
+		return new SuccessResult("Title added.");
 	}
 
 }
