@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms_project.business.abstracts.TitleService;
+import kodlamaio.hrms_project.core.utilities.results.DataResult;
+import kodlamaio.hrms_project.core.utilities.results.Result;
+import kodlamaio.hrms_project.core.utilities.results.SuccessDataResult;
+import kodlamaio.hrms_project.core.utilities.results.SuccessResult;
 import kodlamaio.hrms_project.dataAccess.abstracts.TitleDao;
 import kodlamaio.hrms_project.entities.concretes.Title;
 
@@ -21,16 +25,17 @@ public class TitleManager implements TitleService {
 	}
 
 	@Override
-	public List<Title> getAll() {
+	public DataResult<List<Title>> getAll() {
 
-		return this.titleDao.findAll();
+		return new SuccessDataResult<List<Title>>
+		(this.titleDao.findAll(), "Data Listelendi");
+				
 	}
 
 	@Override
-	public List<Title> findByNameOrderByName() {
-		
-		return this.titleDao.findAll();
+	public Result add(Title title) {
+		this.titleDao.save(title);
+		return new SuccessResult("Ünvan eklendi");
 	}
-
 
 }
