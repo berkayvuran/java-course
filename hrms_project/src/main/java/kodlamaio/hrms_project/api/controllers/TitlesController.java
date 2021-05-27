@@ -25,4 +25,9 @@ public class TitlesController {
 	public List<Title> getAll(){
 		return this.titleService.getAll();
 	}
+	
+	@GetMapping("/findby")
+	public List<Title> findBy(){
+		return this.titleService.findByNameOrderByName();
+	}
 }

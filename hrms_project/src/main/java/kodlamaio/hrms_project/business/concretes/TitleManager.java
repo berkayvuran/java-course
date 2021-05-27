@@ -26,4 +26,11 @@ public class TitleManager implements TitleService {
 		return this.titleDao.findAll();
 	}
 
+	@Override
+	public List<Title> findByNameOrderByName() {
+		
+		return this.titleDao.findAll();
+	}
+
+
 }

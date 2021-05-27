@@ -6,4 +6,5 @@ import kodlamaio.hrms_project.entities.concretes.Title;
 
 public interface TitleService {
 	List<Title> getAll();
+	List<Title> findByNameOrderByName ();
 }
