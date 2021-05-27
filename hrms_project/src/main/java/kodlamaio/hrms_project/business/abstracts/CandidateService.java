@@ -9,5 +9,5 @@ import kodlamaio.hrms_project.entities.concretes.Candidate;
 public interface CandidateService {
 	Result add(Candidate candidate);
 	DataResult<List<Candidate>> getAll();
-	DataResult<Candidate> getCandidateByNationalId(String nationalId);	
+	DataResult<Candidate> getCandidateByNationalityId(String nationalityId);
 }
