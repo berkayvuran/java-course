@@ -1,7 +1,5 @@
 package kodlamaio.hrms.business.concretes;
 
-import java.time.LocalDate;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +27,6 @@ public class AuthManager implements AuthService {
 	private ValidationService validationService;
 	private VerificationCodeService verificationCodeService;
 
-	
 	@Autowired
 	public AuthManager(UserService userService, EmployerService employerService, JobseekerService jobseekerService,
 			VerificationService verificationService, ValidationService validationService,
@@ -96,7 +93,6 @@ public class AuthManager implements AuthService {
 			return new ErrorResult(jobseeker.getEmail() + " already exists.");
 		}
 
-		
 		jobseekerService.add(jobseeker);
 		String code = verificationService.sendCode();
 		verificationCodeRecord(code, jobseeker.getId(), jobseeker.getEmail());
@@ -132,7 +128,7 @@ public class AuthManager implements AuthService {
 	// Validation for employer register ---END---
 
 	// Validation for jobseeker register ---START---
-	
+
 	private boolean checkIfNullInfoForJobseeker(Jobseeker jobseeker, String confirmPassword) {
 
 		if (jobseeker.getFirstName() != null && jobseeker.getLastName() != null && jobseeker.getNationalId() != null
@@ -184,12 +180,12 @@ public class AuthManager implements AuthService {
 
 		return true;
 	}
-	
+
 	private void verificationCodeRecord(String code, int id, String email) {
-		
-		VerificationCode verificationCode = new VerificationCode(id, code, false, LocalDate.now());
+
+		VerificationCode verificationCode = new VerificationCode(id, code, false);
 		this.verificationCodeService.add(verificationCode);
-		System.out.println("Verification code has been sent to " + email );
-	
+		System.out.println("Verification code has been sent to " + email);
+
 	}
 }

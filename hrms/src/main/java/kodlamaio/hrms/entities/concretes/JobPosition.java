@@ -17,31 +17,38 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="job_positions")
+@Table(name = "job_positions")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdverts"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "jobAdverts" })
 public class JobPosition {
 
 	@Id
 	@GeneratedValue
-	@Column(name="id")
+	@Column(name = "id")
 	private int id;
-	
-	@Column(name="job_title")
+
+	@Column(name = "job_title")
 	private String jobTitle;
-	
-	@Column(name= "created_at", columnDefinition = "Date default CURRENT_DATE")
+
+	@Column(name = "created_at", columnDefinition = "Date default CURRENT_DATE")
 	private LocalDate createdDate = LocalDate.now();
-	
-	@Column(name= "is_active", columnDefinition = "boolean default true")
+
+	@Column(name = "is_active", columnDefinition = "boolean default true")
 	private boolean isActive = true;
-	
-	@Column(name= "is_deleted", columnDefinition = "boolean default false")
+
+	@Column(name = "is_deleted", columnDefinition = "boolean default false")
 	private boolean isDeleted = false;
-	
+
 	@OneToMany(mappedBy = "jobPosition")
-	private List<JobAdvert> jobAdverts; 
-		
+	private List<JobAdvert> jobAdverts;
+	
+	public JobPosition(int id, String jobTitle, List<JobAdvert> jobAdverts) {
+		super();
+		this.id = id;
+		this.jobTitle = jobTitle;
+		this.jobAdverts = jobAdverts;
+	}
+
 }
